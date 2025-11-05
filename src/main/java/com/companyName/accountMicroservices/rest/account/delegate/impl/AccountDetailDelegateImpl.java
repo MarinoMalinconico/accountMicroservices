@@ -3,6 +3,8 @@ package com.companyName.accountMicroservices.rest.account.delegate.impl;
 import com.companyName.accountMicroservices.repository.entity.Account;
 import com.companyName.accountMicroservices.repository.entity.AccountRepository;
 import com.companyName.accountMicroservices.rest.account.delegate.AccountDetailDelegate;
+import com.companyName.accountMicroservices.rest.account.model.request.AccountDetailRequest;
+import com.companyName.accountMicroservices.rest.account.model.request.AddAccountDetailRequest;
 import com.companyName.accountMicroservices.rest.account.model.response.AccountDetailResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,17 +38,17 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
             AccountDetailResponse fileDto = new AccountDetailResponse();
             fileDto.setId(dto.getId());
             fileDto.setFkUser(dto.getFkUser());
-            fileDto.setTotal(BigDecimal.valueOf(dto.getTotal()).setScale(2,BigDecimal.ROUND_HALF_DOWN));
+            fileDto.setTotal(dto.getTotal().setScale(2,BigDecimal.ROUND_HALF_DOWN));
             formattedDTOs.add(fileDto);
         }
         return formattedDTOs;
     }
 
     @Override
-    public List<AccountDetailResponse> getAccountDetailJPA(String userCode) {
-        log.debug("Into getAccountDetail delegate with PathParameter [{}]", userCode);
+    public List<AccountDetailResponse> getAccountDetailJPA(String FkUser) {
+        log.debug("Into getAccountDetail delegate with PathParameter [{}]", FkUser);
 
-        List<Account> dbResult = repository.findByFkUser(userCode);
+        List<Account> dbResult = repository.findByFkUser(FkUser);
         List<AccountDetailResponse> response = dbResultToDto(dbResult);
 
         return response;
@@ -60,5 +62,38 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
         List<AccountDetailResponse> response = dbResultToDto(dbResult);
 
         return response;
+    }
+
+    @Override
+    public List<AccountDetailResponse> addAccountDetail(AddAccountDetailRequest account) {
+        log.debug("Into addAccountDetail");
+
+        repository.save(new Account(account.getId(), account.getFkUser(), account.getTotal()));
+
+        List<Account> dbResult = repository.findByFkUser(account.getFkUser());
+        List<AccountDetailResponse> response = dbResultToDto(dbResult);
+
+        return response;
+    }
+
+    @Override
+    public List<AccountDetailResponse> updateAccountDetail(Account account) {
+        log.debug("Into updateAccountDetail");
+
+        repository.save(new Account(account));
+
+        List<Account> dbResult = repository.findByFkUser(account.getFkUser());
+        List<AccountDetailResponse> response = dbResultToDto(dbResult);
+
+        return response;
+    }
+
+    @Override
+    public boolean deleteAccountDetail(Account account) {
+        log.debug("Into deleteAccountDetail for [{}]",account.getFkUser());
+
+        repository.delete(new Account(account));
+
+        return true;
     }
 }

@@ -13,4 +13,5 @@ public interface AccountRepository extends JpaRepository<Account, String> {
     List<Account> findByFkUser(@Param("userCode")String userCode);
 
     List<Account> findAll();
+
 }

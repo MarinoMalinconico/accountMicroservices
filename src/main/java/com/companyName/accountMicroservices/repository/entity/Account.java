@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name="accounts")
 @AllArgsConstructor
@@ -27,5 +29,11 @@ public class Account {
 
     @Column(name="TOTAL")
     @Getter @Setter
-    private Double total;
+    private BigDecimal total;
+
+    public Account(Account account) {
+        this.id = account.getId();
+        this.fkUser = account.getFkUser();
+        this.total = account.getTotal();
+    }
 }

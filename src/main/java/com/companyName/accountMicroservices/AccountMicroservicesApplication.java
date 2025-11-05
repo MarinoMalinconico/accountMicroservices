@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.math.BigDecimal;
+
 @SpringBootApplication
 @Slf4j
 public class AccountMicroservicesApplication implements CommandLineRunner {
@@ -22,11 +24,11 @@ public class AccountMicroservicesApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info("Metodo run");
-        accountRepository.save(new Account("cn4563df3", "RGNLSN87H13D761R", 3000.03));
-        accountRepository.save(new Account("cn7256su9", "RGNLSN87H13D761R", 4000.10));
-        accountRepository.save(new Account("cn6396dr7", "FRNFBA85M08D761M", 7000.00));
-        accountRepository.save(new Account("cn2759ds4", "DSTLCU89R52D761R", 2000.00));
-        accountRepository.save(new Account("cn2874da2", "DSTLCU89R52D761R", 8000.00));
+        accountRepository.save(new Account("cn4563df3", "RGNLSN87H13D761R", new BigDecimal("3000.03")));
+        accountRepository.save(new Account("cn7256su9", "RGNLSN87H13D761R", new BigDecimal("3000.03")));
+        accountRepository.save(new Account("cn6396dr7", "FRNFBA85M08D761M", new BigDecimal("3000.03")));
+        accountRepository.save(new Account("cn2759ds4", "DSTLCU89R52D761R", new BigDecimal("3000.03")));
+        accountRepository.save(new Account("cn2874da2", "DSTLCU89R52D761R", new BigDecimal("3000.03")));
     }
 
 }
