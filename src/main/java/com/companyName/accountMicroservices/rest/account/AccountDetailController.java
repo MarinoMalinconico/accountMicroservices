@@ -61,14 +61,14 @@ public class AccountDetailController {
     @RequestMapping(value = "/accountDetailBasicResponseParam",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponse(@RequestParam String userCode) throws InvalidParameterException {
+    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponse(@RequestParam String FkUser) throws InvalidParameterException {
 
-        log.info("Entering in accountDetail service(param) - PathVariable: [{}]", userCode);
+        log.info("Entering in accountDetail service(param) - PathVariable: [{}]", FkUser);
 
         List<AccountDetailResponse> delegateResult =  null;
         BasicResponse<List<AccountDetailResponse>> response = new BasicResponse<>();
         try {
-            delegateResult= delegate.getAccountDetail(userCode);
+            delegateResult= delegate.getAccountDetail(FkUser);
             if (!delegateResult.isEmpty() && delegateResult!=null){
                 response.setData(delegateResult);
                 //response.setTimestamp(fmt.format(new Date()));
