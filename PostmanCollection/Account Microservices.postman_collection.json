@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "3d427bc6-9b15-45c2-a9e9-b8142da5bf36",
+		"name": "Account Microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49645568",
+		"_collection_link": "https://marinontt-4886483.postman.co/workspace/Marino-NTT's-Workspace~b025e933-42f4-4af8-8f19-64c35e84dbe8/collection/49645568-3d427bc6-9b15-45c2-a9e9-b8142da5bf36?action=share&source=collection_link&creator=49645568"
+	},
+	"item": [
+		{
+			"name": "CRUD",
+			"item": [
+				{
+					"name": "CREATE addAccountDetailBasicResponse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n            \"id\": \"ciao\",\r\n            \"fkUser\": \"CCGVNLSN87H13D761R\",\r\n            \"total\": 3000.03\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}AddAccount",
+							"host": [
+								"{{baseURL}}AddAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "READ accountDetailBasicResponse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cf\":\"DSTLCU89R52D761R\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}accountDetailBasicResponse",
+							"host": [
+								"{{baseURL}}accountDetailBasicResponse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "READ PATH accountDetailBasicResponse parameter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}accountDetailBasicResponseParam?FkUser=RGNLSN87H13D761R",
+							"host": [
+								"{{baseURL}}accountDetailBasicResponseParam"
+							],
+							"query": [
+								{
+									"key": "FkUser",
+									"value": "RGNLSN87H13D761R"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE updateAccountDetailBasicResponse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n            \"id\": \"ciao\",\r\n            \"fkUser\": \"DDGVNLSN87H13D761t\",\r\n            \"total\": 3000.03\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}UpdateAccount",
+							"host": [
+								"{{baseURL}}UpdateAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE deleteAccountDetailBasicResponse",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n            \"id\": \"ciao\",\r\n            \"fkUser\": \"DDGVNLSN87H13D761t\",\r\n            \"total\": 3000.03\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}DeleteAccount",
+							"host": [
+								"{{baseURL}}DeleteAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "READ JPA accountDetailBasicResponse parameter",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}accountDetailBasicResponseParam?FkUser=DSTLCU89R52D761R",
+							"host": [
+								"{{baseURL}}accountDetailBasicResponseParam"
+							],
+							"query": [
+								{
+									"key": "FkUser",
+									"value": "DSTLCU89R52D761R"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "READ All JPA accountDetailBasicResponse parameter",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}accountDetailBasicResponseParamAll",
+							"host": [
+								"{{baseURL}}accountDetailBasicResponseParamAll"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Actuator",
+			"item": [
+				{
+					"name": "Actuators",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}actuator",
+							"host": [
+								"{{baseURL}}actuator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}actuator/health",
+							"host": [
+								"{{baseURL}}actuator"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Beans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}actuator/beans",
+							"host": [
+								"{{baseURL}}actuator"
+							],
+							"path": [
+								"beans"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": ""
+		}
+	]
+}
