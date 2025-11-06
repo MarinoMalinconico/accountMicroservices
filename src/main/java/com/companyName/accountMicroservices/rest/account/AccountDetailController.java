@@ -245,7 +245,7 @@ public class AccountDetailController {
         } catch (Exception e) {
             log.error("ERROR {}",e.getMessage(), e);
         }
-        log.info(deleted ? "eseguita delete di {}" : "errore nella delete di {}", account.getFkUser());
+        log.info(deleted ? "eseguita delete di {} - {}" : "errore nella delete di {}", account.getFkUser(),account.getId());
 
         return ResponseEntity
                 .ok()

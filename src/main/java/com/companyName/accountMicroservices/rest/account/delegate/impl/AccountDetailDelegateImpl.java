@@ -90,7 +90,7 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
 
     @Override
     public boolean deleteAccountDetail(Account account) {
-        log.debug("Into deleteAccountDetail for [{}]",account.getFkUser());
+        log.debug("Into deleteAccountDetail for [{} - {}]",account.getFkUser(),account.getId());
 
         repository.delete(new Account(account));
 
