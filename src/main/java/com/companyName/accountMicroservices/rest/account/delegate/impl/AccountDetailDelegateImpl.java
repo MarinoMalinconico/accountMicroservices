@@ -23,10 +23,10 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
     AccountRepository repository;
 
     @Override
-    public List<AccountDetailResponse> getAccountDetail(String userCode) {
-        log.debug("Into getAccountDetail delegate with PathParameter [{}]", userCode);
+    public List<AccountDetailResponse> getAccountDetail(String FkUser) {
+        log.debug("Into getAccountDetail delegate with PathParameter [{}]", FkUser);
 
-        List<Account> dbResult = repository.getAllAccountPerUser(userCode);
+        List<Account> dbResult = repository.getAllAccountPerUser(FkUser);
         List<AccountDetailResponse> response = dbResultToDto(dbResult);
 
         return response;

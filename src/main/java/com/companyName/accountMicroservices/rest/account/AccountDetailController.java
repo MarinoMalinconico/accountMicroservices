@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.InvalidParameterException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -28,14 +27,14 @@ public class AccountDetailController {
     @RequestMapping(value = "/accountDetailBasicResponse",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponse(@RequestBody AccountDetailRequest userCode) throws InvalidParameterException {
+    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponse(@RequestBody AccountDetailRequest account) throws InvalidParameterException {
 
-        log.info("Entering in accountDetail service - PathVariable: [{}]", userCode.getCf());
+        log.info("Entering in accountDetail service - PathVariable: [{}]", account.getCf());
 
         List<AccountDetailResponse> delegateResult =  null;
         BasicResponse<List<AccountDetailResponse>> response = new BasicResponse<>();
         try {
-            delegateResult= delegate.getAccountDetail(userCode.getCf());
+            delegateResult= delegate.getAccountDetail(account.getCf());
             if (!delegateResult.isEmpty() && delegateResult!=null){
                 response.setData(delegateResult);
                 //response.setTimestamp(fmt.format(new Date()));
@@ -220,7 +219,7 @@ public class AccountDetailController {
     }
 
     @RequestMapping(value = "/DeleteAccount",
-            method = RequestMethod.POST,
+            method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> deleteAccount(@RequestBody Account account) throws InvalidParameterException {
 

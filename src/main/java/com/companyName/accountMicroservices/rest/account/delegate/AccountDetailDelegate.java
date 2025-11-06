@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface AccountDetailDelegate {
 
-    List<AccountDetailResponse> getAccountDetail(String userCode) throws InvalidParameterException ;
-    List<AccountDetailResponse> getAccountDetailJPA(String userCode) throws InvalidParameterException ;
+    List<AccountDetailResponse> getAccountDetail(String FkUser) throws InvalidParameterException ;
+    List<AccountDetailResponse> getAccountDetailJPA(String FkUser) throws InvalidParameterException ;
     List<AccountDetailResponse> getAllJPA() throws InvalidParameterException ;
     List<AccountDetailResponse> addAccountDetail(AddAccountDetailRequest account) throws InvalidParameterException ;
     List<AccountDetailResponse> updateAccountDetail(Account account) throws InvalidParameterException ;
