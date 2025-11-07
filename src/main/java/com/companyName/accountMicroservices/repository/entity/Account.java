@@ -23,17 +23,32 @@ public class Account {
     @Setter
     private String id;
 
+    @Column(name="NAME")
+    @Getter @Setter
+    private String name;
+
+    @Column(name="SURNAME")
+    @Getter @Setter
+    private String surname;
+
+    @Column(name="EMAIL")
+    @Getter @Setter
+    private String email;
+
     @Column(name="FK_USER")
     @Getter @Setter
     private String fkUser;
 
-    @Column(name="TOTAL")
+    @Column(name="BALANCE")
     @Getter @Setter
-    private BigDecimal total;
+    private BigDecimal balance;
 
-    public Account(Account account) {
+    public Account(Account account) { //serve a fare new Account(account), altrimenti devi fare new Account(account.getId,account.getName,....)
         this.id = account.getId();
+        this.name = account.getName();
+        this.surname = account.getSurname();
+        this.email = account.getEmail();
         this.fkUser = account.getFkUser();
-        this.total = account.getTotal();
+        this.balance = account.getBalance();
     }
 }
