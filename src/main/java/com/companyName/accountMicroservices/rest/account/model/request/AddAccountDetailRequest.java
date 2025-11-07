@@ -16,8 +16,17 @@ public class AddAccountDetailRequest {
     private String id;
 
     @Getter @Setter
+    private String name;
+
+    @Getter @Setter
+    private String surname;
+
+    @Getter @Setter
+    private String email;
+
+    @Getter @Setter
     private String fkUser;
 
     @Getter @Setter
-    private BigDecimal total;
+    private BigDecimal balance;
 }

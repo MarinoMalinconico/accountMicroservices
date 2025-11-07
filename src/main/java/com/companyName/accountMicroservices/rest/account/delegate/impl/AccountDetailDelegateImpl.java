@@ -3,7 +3,6 @@ package com.companyName.accountMicroservices.rest.account.delegate.impl;
 import com.companyName.accountMicroservices.repository.entity.Account;
 import com.companyName.accountMicroservices.repository.entity.AccountRepository;
 import com.companyName.accountMicroservices.rest.account.delegate.AccountDetailDelegate;
-import com.companyName.accountMicroservices.rest.account.model.request.AccountDetailRequest;
 import com.companyName.accountMicroservices.rest.account.model.request.AddAccountDetailRequest;
 import com.companyName.accountMicroservices.rest.account.model.response.AccountDetailResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -37,8 +35,11 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
         for (Account dto : dtos) {
             AccountDetailResponse fileDto = new AccountDetailResponse();
             fileDto.setId(dto.getId());
+            fileDto.setName(dto.getName());
+            fileDto.setSurname(dto.getSurname());
+            fileDto.setEmail(dto.getEmail());
             fileDto.setFkUser(dto.getFkUser());
-            fileDto.setTotal(dto.getTotal().setScale(2,BigDecimal.ROUND_HALF_DOWN));
+            fileDto.setBalance(dto.getBalance().setScale(2,BigDecimal.ROUND_HALF_DOWN));
             formattedDTOs.add(fileDto);
         }
         return formattedDTOs;
@@ -68,7 +69,7 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
     public List<AccountDetailResponse> addAccountDetail(AddAccountDetailRequest account) {
         log.debug("Into addAccountDetail");
 
-        repository.save(new Account(account.getId(), account.getFkUser(), account.getTotal()));
+        repository.save(new Account(account.getId(),account.getName(), account.getSurname(), account.getEmail(), account.getFkUser(), account.getBalance()));
 
         List<Account> dbResult = repository.findByFkUser(account.getFkUser());
         List<AccountDetailResponse> response = dbResultToDto(dbResult);
