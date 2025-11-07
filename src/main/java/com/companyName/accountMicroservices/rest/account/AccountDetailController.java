@@ -3,6 +3,7 @@ package com.companyName.accountMicroservices.rest.account;
 import com.companyName.accountMicroservices.common.model.BasicResponse;
 import com.companyName.accountMicroservices.repository.entity.Account;
 import com.companyName.accountMicroservices.rest.account.delegate.AccountDetailDelegate;
+import com.companyName.accountMicroservices.rest.account.exceptions.AccountDetailException;
 import com.companyName.accountMicroservices.rest.account.model.request.AccountDetailRequest;
 import com.companyName.accountMicroservices.rest.account.model.request.AddAccountDetailRequest;
 import com.companyName.accountMicroservices.rest.account.model.response.AccountDetailResponse;
@@ -27,7 +28,7 @@ public class AccountDetailController {
     @RequestMapping(value = "/accountDetailBasicResponse",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponse(@RequestBody AccountDetailRequest account) throws InvalidParameterException {
+    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponse(@RequestBody AccountDetailRequest account) throws InvalidParameterException, AccountDetailException {
 
         log.info("Entering in accountDetail service - PathVariable: [{}]", account.getCf());
 
@@ -40,6 +41,7 @@ public class AccountDetailController {
                 //response.setTimestamp(fmt.format(new Date()));
             } else {
                 //metti log "nessun dato trovato"
+                throw new AccountDetailException("No data found for request param: "+account.getCf());
             }
             log.debug("result delegate.getAccountDetail(account) [{}]", response);
         } catch (InvalidParameterException  e){
