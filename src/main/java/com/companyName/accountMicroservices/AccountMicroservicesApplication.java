@@ -1,7 +1,7 @@
 package com.companyName.accountMicroservices;
 
 import com.companyName.accountMicroservices.repository.entity.Account;
-import com.companyName.accountMicroservices.repository.entity.AccountRepository;
+import com.companyName.accountMicroservices.repository.AccountRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
