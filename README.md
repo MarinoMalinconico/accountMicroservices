@@ -5,6 +5,11 @@ ___
 Questo Microservizio consente il censimento, aggiornamento e eliminazione di posizioni bancarie all'interno di un DataBase
 ___
 ## parte tecnica
+### versioni
++ Java 17
+  + Amazon corretto 17.0.17
++ Spring
+  + Spring Boot 3.5.7
 ### struttura
 + il microservizio usa un pattern delegate
   + delegate permette di usare una classe apposita per un determinato compito e facilita il riutilizzo del codice
