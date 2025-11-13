@@ -13,7 +13,7 @@ public class AddAccountDetailRequest {
 
     @Getter
     @Setter
-    private String id;
+    private Long id;
 
     @Getter @Setter
     private String name;

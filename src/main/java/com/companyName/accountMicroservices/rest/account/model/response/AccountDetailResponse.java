@@ -13,7 +13,7 @@ public class AccountDetailResponse {
 
     @Getter
     @Setter
-    private String id;
+    private Long id;
 
     @Getter @Setter
     private String name;
