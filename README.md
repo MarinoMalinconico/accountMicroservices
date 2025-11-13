@@ -40,7 +40,7 @@ ___
   + presenti anche nella collection **Account Microservices.postman_collection.json** nella cartella **Postman Collection**
     + con **baseURL:**
         ```
-      localhost:8094/accountmicroservices/services/
+      localhost:8095/accountmicroservices/services/
         ```
     
     + **baseURL**accountDetailBasicResponse
@@ -60,7 +60,7 @@ ___
 
     #spring.application.name=accountMicroservices
     
-    server.port=8094
+    server.port=8095
     server.servlet.context-path=/accountmicroservices/services
     
     info.app.name = @project.name@
