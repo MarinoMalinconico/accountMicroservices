@@ -24,11 +24,11 @@ public class AccountMicroservicesApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info("Metodo run");
-        accountRepository.save(new Account(null,"pippo","gulp","pippo@topolinia.top", "RGNLSN87H13D761R", new BigDecimal("3000.01")));
-        accountRepository.save(new Account(null,"pluto","bau","pluto@topolinia.top", "RGNLSN87H13D761R", new BigDecimal("3000.02")));
-        accountRepository.save(new Account(null,"paperino","quack","paperino@paperopoli.top", "FRNFBA85M08D761M", new BigDecimal("3000.03")));
-        accountRepository.save(new Account(null,"topolino","squit","topolino@topolinia.top", "DSTLCU89R52D761R", new BigDecimal("3000.04")));
-        accountRepository.save(new Account(null,"sora","roxas","sora@gummiship.kh", "DSTLCU89R52D761R", new BigDecimal("3000.05")));
+        //accountRepository.save(new Account(null,"pippo","gulp","pippo@topolinia.top", "RGNLSN87H13D761R", new BigDecimal("3000.01")));
+        //accountRepository.save(new Account(null,"pluto","bau","pluto@topolinia.top", "RGNLSN87H13D761R", new BigDecimal("3000.02")));
+        //accountRepository.save(new Account(null,"paperino","quack","paperino@paperopoli.top", "FRNFBA85M08D761M", new BigDecimal("3000.03")));
+        //accountRepository.save(new Account(null,"topolino","squit","topolino@topolinia.top", "DSTLCU89R52D761R", new BigDecimal("3000.04")));
+        //accountRepository.save(new Account(null,"sora","roxas","sora@gummiship.kh", "DSTLCU89R52D761R", new BigDecimal("3000.05")));
     }
 
 }
