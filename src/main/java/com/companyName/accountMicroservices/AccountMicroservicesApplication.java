@@ -1,17 +1,23 @@
 package com.companyName.accountMicroservices;
 
-import com.companyName.accountMicroservices.repository.entity.Account;
-import com.companyName.accountMicroservices.repository.AccountRepository;
+import com.companyName.coreMicroservices.repository.entity.Account;
+import com.companyName.coreMicroservices.repository.AccountRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.math.BigDecimal;
 
 @SpringBootApplication
 @Slf4j
+@AutoConfiguration
+@EntityScan(basePackages = "com.companyName.coreMicroservices.repository.entity")
+@EnableJpaRepositories(basePackages = "com.companyName.coreMicroservices.repository")
 public class AccountMicroservicesApplication implements CommandLineRunner {
 
     @Autowired

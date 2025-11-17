@@ -1,7 +1,7 @@
 package com.companyName.accountMicroservices.rest.account.delegate;
 
 
-import com.companyName.accountMicroservices.repository.entity.Account;
+import com.companyName.coreMicroservices.repository.entity.Account;
 import com.companyName.accountMicroservices.rest.account.model.request.AccountDetailRequest;
 import com.companyName.accountMicroservices.rest.account.model.request.AddAccountDetailRequest;
 import com.companyName.accountMicroservices.rest.account.model.response.AccountDetailResponse;
