@@ -17,4 +17,5 @@ public interface AccountDetailDelegate {
     List<AccountDetailResponse> addAccountDetail(AddAccountDetailRequest account) throws InvalidParameterException ;
     List<AccountDetailResponse> updateAccountDetail(Account account) throws InvalidParameterException ;
     boolean deleteAccountDetail(Account account) throws InvalidParameterException ;
+    boolean deleteAccountDetailByCf(Account account) throws InvalidParameterException ;
 }

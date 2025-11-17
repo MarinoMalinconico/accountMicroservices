@@ -254,4 +254,39 @@ public class AccountDetailController {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(response);
     }
+
+    @RequestMapping(value = "/DeleteAccountByCf",
+            method = RequestMethod.DELETE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> deleteAccountByCf(@RequestBody Account account) throws InvalidParameterException {
+
+        log.info("Entering in account delete of [{}]",account.getFkUser());
+
+        boolean deleted=false;
+
+        List<AccountDetailResponse> delegateResult = null;
+        BasicResponse<List<AccountDetailResponse>> response = new BasicResponse<>();
+        try {
+            delegateResult= delegate.getAccountDetailJPA(account.getFkUser());
+            deleted=delegate.deleteAccountDetailByCf(account);
+            if (!delegateResult.isEmpty() && delegateResult != null) {
+                response.setData(delegateResult);
+                //response.setTimestamp(fmt.format(new Date()));
+            } else {
+                //metti log "nessun dato trovato"
+            }
+            log.debug("result delegate.getAccountDetail(account) [{}]", response);
+        } catch (InvalidParameterException e) {
+            log.error("ERROR {}", e.getMessage(), e);
+            throw e;
+        } catch (Exception e) {
+            log.error("ERROR {}",e.getMessage(), e);
+        }
+        log.info(deleted ? "eseguita delete di {} - {}" : "errore nella delete di {}", account.getFkUser(),account.getId());
+
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(response);
+    }
 }

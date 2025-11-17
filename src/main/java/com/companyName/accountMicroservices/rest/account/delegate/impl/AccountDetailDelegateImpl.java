@@ -97,4 +97,13 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
 
         return true;
     }
+
+    @Override
+    public boolean deleteAccountDetailByCf(Account account) {
+        log.debug("Into deleteAccountDetail for [{} - {}]",account.getFkUser(),account.getId());
+
+        repository.deleteaccountByfkUser(account.getFkUser());
+
+        return true;
+    }
 }
