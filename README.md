@@ -40,7 +40,7 @@ ___
   + presenti anche nella collection **Account Microservices.postman_collection.json** nella cartella **Postman Collection**
     + con **baseURL:**
         ```
-      localhost:8095/accountmicroservices/services/
+      localhost:8095/accountMicroservices/services/
         ```
     
     + **baseURL**accountDetailBasicResponse
