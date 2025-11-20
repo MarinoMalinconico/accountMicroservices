@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n            \"name\":\"pier\",\r\n            \"surname\":\"paolo\",\r\n            \"email\":\"pierpaolo@altrove.it\",\r\n            \"fkUser\": \"CCGVNLSN87H13D761R\",\r\n            \"balance\": 3000.03\r\n}",
+							"raw": " {\r\n    \"name\":\"pier\",\r\n    \"surname\":\"paolo\",\r\n    \"email\":\"pierpaolo@altrove.it\",\r\n    \"fkUser\": \"CCGVNLSN87H13D761R\",\r\n    \"balance\": 3000.03\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -92,7 +92,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n            \"id\": \"6\",\r\n            \"name\":\"pier\",\r\n            \"surname\":\"paola\",\r\n            \"email\":\"pierpaola@altrove.it\",\r\n            \"fkUser\": \"CCGVNLSN87H13D761R\",\r\n            \"balance\": 3000.03\r\n}",
+							"raw": " {\r\n    \"id\": \"6\",\r\n    \"name\":\"pier\",\r\n    \"surname\":\"paola\",\r\n    \"email\":\"pierpaola@altrove.it\",\r\n    \"fkUser\": \"CCGVNLSN87H13D761R\",\r\n    \"balance\": 3000.03\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -115,7 +115,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n            \"id\": \"6\",\r\n            \"fkUser\": \"CCGVNLSN87H13D761R\",\r\n            \"total\": 3000.03\r\n        }",
+							"raw": " {\r\n    \"id\": \"6\",\r\n    \"fkUser\": \"CCGVNLSN87H13D761R\",\r\n    \"total\": 3000.03\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -138,7 +138,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n            \"fkUser\": \"CCGVNLSN87H13D761R\",\r\n            \"total\": 3000.03\r\n        }",
+							"raw": " {\r\n    \"fkUser\": \"CCGVNLSN87H13D761R\",\r\n    \"total\": 3000.03\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
