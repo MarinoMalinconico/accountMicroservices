@@ -40,6 +40,7 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
             fileDto.setEmail(dto.getEmail());
             fileDto.setFkUser(dto.getFkUser());
             fileDto.setBalance(dto.getBalance().setScale(2,BigDecimal.ROUND_HALF_DOWN));
+            fileDto.setInvoices(dto.getInvoices());
             formattedDTOs.add(fileDto);
         }
         return formattedDTOs;
@@ -69,7 +70,7 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
     public List<AccountDetailResponse> addAccountDetail(AddAccountDetailRequest account) {
         log.debug("Into addAccountDetail");
 
-        repository.save(new Account(account.getId(),account.getName(), account.getSurname(), account.getEmail(), account.getFkUser(), account.getBalance()));
+        repository.save(new Account(account.getId(),account.getName(), account.getSurname(), account.getEmail(), account.getFkUser(), account.getBalance(), account.getInvoices()));
 
         List<Account> dbResult = repository.findByFkUser(account.getFkUser());
         List<AccountDetailResponse> response = dbResultToDto(dbResult);
