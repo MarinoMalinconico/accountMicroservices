@@ -1,12 +1,13 @@
 package com.companyName.accountMicroservices.rest.account;
 
 import com.companyName.accountMicroservices.common.model.BasicResponse;
-import com.companyName.coreMicroservices.repository.entity.Account;
 import com.companyName.accountMicroservices.rest.account.delegate.AccountDetailDelegate;
 import com.companyName.accountMicroservices.rest.account.exceptions.AccountDetailException;
 import com.companyName.accountMicroservices.rest.account.model.request.AccountDetailRequest;
 import com.companyName.accountMicroservices.rest.account.model.request.AddAccountDetailRequest;
 import com.companyName.accountMicroservices.rest.account.model.response.AccountDetailResponse;
+import com.companyName.coreMicroservices.repository.entity.Account;
+import com.companyName.coreMicroservices.repository.entity.Invoice;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.InvalidParameterException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Slf4j
@@ -189,8 +189,33 @@ public class AccountDetailController {
                 .body(response);
     }
 
+    @RequestMapping(value = "/AddInvoice",
+            method = RequestMethod.PUT,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> updateAccount(@RequestBody Invoice invoice, @RequestParam Long accountId) throws InvalidParameterException {
+
+        log.info("Entering in AddInvoice [{}]",accountId);
+
+        BasicResponse<List<AccountDetailResponse>> response = new BasicResponse<>();
+        try {
+            delegate.addInvoiceToAccount(accountId,invoice);
+
+            log.debug("response [{}]", response);
+        } catch (InvalidParameterException e) {
+            log.error("ERROR {}", e.getMessage(), e);
+            throw e;
+        } catch (Exception e) {
+            log.error("ERROR {}",e.getMessage(), e);
+        }
+
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(response);
+    }
+
     @RequestMapping(value = "/UpdateAccount",
-    method = RequestMethod.POST,
+    method = RequestMethod.PUT,
     produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> updateAccount(@RequestBody Account account) throws InvalidParameterException {
 
@@ -262,7 +287,7 @@ public class AccountDetailController {
 
         log.info("Entering in account delete of [{}]",account.getFkUser());
 
-        boolean deleted=false;
+        int deleted=-1;
 
         List<AccountDetailResponse> delegateResult = null;
         BasicResponse<List<AccountDetailResponse>> response = new BasicResponse<>();
@@ -282,7 +307,9 @@ public class AccountDetailController {
         } catch (Exception e) {
             log.error("ERROR {}",e.getMessage(), e);
         }
-        log.info(deleted ? "eseguita delete di {} - {}" : "errore nella delete di {}", account.getFkUser(),account.getId());
+        if (deleted > 0) log.info("eseguita delete di {} elementi di {}", deleted, account.getFkUser());
+        else
+            log.info(deleted == 0 ? "nessun elemento di {}":"errore nella delete di {}", account.getFkUser());
 
         return ResponseEntity
                 .ok()
