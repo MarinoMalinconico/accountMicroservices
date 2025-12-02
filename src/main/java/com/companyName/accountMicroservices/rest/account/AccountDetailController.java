@@ -287,7 +287,7 @@ public class AccountDetailController {
 
         log.info("Entering in account delete of [{}]",account.getFkUser());
 
-        int deleted=-1;
+        boolean deleted=false;
 
         List<AccountDetailResponse> delegateResult = null;
         BasicResponse<List<AccountDetailResponse>> response = new BasicResponse<>();
@@ -307,9 +307,7 @@ public class AccountDetailController {
         } catch (Exception e) {
             log.error("ERROR {}",e.getMessage(), e);
         }
-        if (deleted > 0) log.info("eseguita delete di {} elementi di {}", deleted, account.getFkUser());
-        else
-            log.info(deleted == 0 ? "nessun elemento di {}":"errore nella delete di {}", account.getFkUser());
+        log.info(deleted ? "eseguita delete di {} - {}" : "errore nella delete di {}", account.getFkUser(),account.getId());
 
         return ResponseEntity
                 .ok()

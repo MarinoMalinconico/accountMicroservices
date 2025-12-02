@@ -6,7 +6,6 @@ import com.companyName.accountMicroservices.rest.account.delegate.AccountDetailD
 import com.companyName.accountMicroservices.rest.account.model.request.AddAccountDetailRequest;
 import com.companyName.accountMicroservices.rest.account.model.response.AccountDetailResponse;
 import com.companyName.coreMicroservices.repository.entity.Invoice;
-import com.companyName.coreMicroservices.repository.entity.Payment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -91,20 +90,14 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
     }
 
     @Override
-    public List<AccountDetailResponse> updateAccountDetail(Account account) {
+    public List<AccountDetailResponse> updateAccountDetail(Account newAccount) {
         log.debug("Into updateAccountDetail");
 
-        Optional<Account> currentAccount = repository.findById(account.getId().toString());
-        //currentAccount.get().setName(account.getName());
-        //currentAccount.get().setSurname(account.getSurname());
-        //currentAccount.get().setEmail(account.getEmail());
-        //currentAccount.get().setFkUser(account.getFkUser());
-        //currentAccount.get().setBalance(account.getBalance());
-        //currentAccount.get().setInvoices(currentAccount.get().getInvoices());
-        currentAccount.get().updateAccount(account);
+        Optional<Account> currentAccount = repository.findById(newAccount.getId().toString());
+        currentAccount.get().updateAccount(newAccount);
         repository.save(currentAccount.get());
 
-        List<Account> dbResult = repository.findByFkUser(account.getFkUser());
+        List<Account> dbResult = repository.findByFkUser(newAccount.getFkUser());
         List<AccountDetailResponse> response = dbResultToDto(dbResult);
 
         return response;
@@ -120,13 +113,10 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
     }
 
     @Override
-    public int deleteAccountDetailByCf(Account account) {
+    public boolean deleteAccountDetailByCf(Account account) {
         log.debug("Into deleteAccountDetail for [{} - {}]",account.getFkUser(),account.getId());
 
         List<Account> dbResult = repository.findByFkUser(account.getFkUser());
-
-        int s;
-        s = dbResult.size();
 
         try {
             for(Account accToDelete:dbResult){
@@ -135,12 +125,7 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        //se arriva qui, significa che non ci sono stati problemi durante le delete
-        int sizeWithoutError = s;
 
-        //usando la query non si puo cancellare se ci sono elementi collegati
-        //repository.deleteaccountByfkUser(account.getFkUser());
-
-        return sizeWithoutError;
+        return true;
     }
 }

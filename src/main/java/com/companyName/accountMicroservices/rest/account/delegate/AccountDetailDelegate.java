@@ -18,5 +18,5 @@ public interface AccountDetailDelegate {
     void addInvoiceToAccount(Long accountId, Invoice invoice);
     List<AccountDetailResponse> updateAccountDetail(Account account) throws InvalidParameterException ;
     boolean deleteAccountDetail(Account account) throws InvalidParameterException ;
-    int deleteAccountDetailByCf(Account account) throws InvalidParameterException ;
+    boolean deleteAccountDetailByCf(Account account) throws InvalidParameterException ;
 }
