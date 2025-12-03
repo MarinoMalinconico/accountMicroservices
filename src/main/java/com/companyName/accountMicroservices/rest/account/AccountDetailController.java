@@ -62,7 +62,7 @@ public class AccountDetailController {
     @RequestMapping(value = "/accountDetailBasicResponseParam",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponse(@RequestParam String FkUser) throws InvalidParameterException {
+    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponseByCfQuery(@RequestParam String FkUser) throws InvalidParameterException {
 
         log.info("Entering in accountDetail service(param) - PathVariable: [{}]", FkUser);
 
@@ -95,7 +95,7 @@ public class AccountDetailController {
     @RequestMapping(value = "/accountDetailBasicResponseParam",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponseGET(@RequestParam String FkUser) throws InvalidParameterException {
+    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponseByCf(@RequestParam String FkUser) throws InvalidParameterException {
 
         log.info("Entering in accountDetail service(param)(JPA) - PathVariable: [{}]", FkUser);
 
@@ -128,7 +128,7 @@ public class AccountDetailController {
     @RequestMapping(value = "/accountDetailBasicResponseParamAll",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponseGET() throws InvalidParameterException {
+    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponseGetAll() throws InvalidParameterException {
 
         log.info("Entering in accountDetail service(param)(JPA)(all)");
 
@@ -192,7 +192,7 @@ public class AccountDetailController {
     @RequestMapping(value = "/AddInvoice",
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> updateAccount(@RequestBody Invoice invoice, @RequestParam Long accountId) throws InvalidParameterException {
+    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> AddInvoice(@RequestBody Invoice invoice, @RequestParam Long accountId) throws InvalidParameterException {
 
         log.info("Entering in AddInvoice [{}]",accountId);
 
@@ -217,7 +217,7 @@ public class AccountDetailController {
     @RequestMapping(value = "/UpdateAccount",
     method = RequestMethod.PUT,
     produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> updateAccount(@RequestBody Account account) throws InvalidParameterException {
+    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> updateAccountDetail(@RequestBody Account account) throws InvalidParameterException {
 
         log.info("Entering in account update of [{}]",account.getFkUser());
 
