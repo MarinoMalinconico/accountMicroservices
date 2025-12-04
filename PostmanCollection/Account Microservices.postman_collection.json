@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n    \"name\":\"pier\",\r\n    \"surname\":\"paolo\",\r\n    \"email\":\"pierpaolo@altrove.it\",\r\n    \"fkUser\": \"CCGVNLSN87H13D762R\",\r\n    \"balance\": 3000.03,\r\n    \"invoices\": null\r\n}",
+							"raw": "{\r\n    \"name\":\"pier\",\r\n    \"surname\":\"paolo\",\r\n    \"email\":\"pierpaolo@altrove.it\",\r\n    \"fkUser\": \"CCGVNLSN87H13D762R\",\r\n    \"balance\": 3000.03,\r\n    \"invoices\": null\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -30,7 +30,7 @@
 								"{{baseURL}}AddAccount"
 							]
 						},
-						"description": "esempio di uso, ricorda di avere inovice a null\n\n```\n {\n    \"name\":\"pier\",\n    \"surname\":\"paolo\",\n    \"email\":\"pierpaolo@altrove.it\",\n    \"fkUser\": \"CCGVNLSN87H13D761R\",\n    \"balance\": 3000.03,\n    \"invoices\": null\n}\n\n ```"
+						"description": "esempio di uso, ricorda di avere inovice a null\n\n```\n{\n    \"name\":\"pier\",\n    \"surname\":\"paolo\",\n    \"email\":\"pierpaolo@altrove.it\",\n    \"fkUser\": \"CCGVNLSN87H13D761R\",\n    \"balance\": 3000.03,\n    \"invoices\": null\n}\n\n ```"
 					},
 					"response": []
 				},
@@ -106,7 +106,7 @@
 								"{{baseURL}}UpdateAccount"
 							]
 						},
-						"description": "esempio di uso, mettere id dell'elemento che si vuole modificare (obbligatorio), e inserire i campi da modificare, con i nuovi valori, ricorda di avere inovice a null\n\n```\n{\n    \"id\":16,\n    \"name\":\"pier\",\n    \"surname\":\"paola\"\n}\n\n ```"
+						"description": "esempio di uso, mettere id dell'elemento che si vuole modificare (obbligatorio), e inserire i campi da modificare, con i nuovi valori, ricorda di avere inovice a null\n\n```\n{\n    \"id\":16,\n    \"name\":\"pier\",\n    \"surname\":\"paola\"\n}\n\n ```\n\nstruttura con tutti gli attributi\n\n```\n{\n    \"id\":16,\n    \"name\":\"pier\",\n    \"surname\":\"paolo\",\n    \"email\":\"pierpaolo@altrove.it\",\n    \"fkUser\": \"CCGVNLSN87H13D762R\",\n    \"balance\": 3000.03\n}\n\n ```"
 					},
 					"response": []
 				},
