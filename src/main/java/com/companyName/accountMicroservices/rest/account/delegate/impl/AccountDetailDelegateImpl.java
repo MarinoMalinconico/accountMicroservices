@@ -6,6 +6,7 @@ import com.companyName.accountMicroservices.rest.account.delegate.AccountDetailD
 import com.companyName.accountMicroservices.rest.account.model.request.AddAccountDetailRequest;
 import com.companyName.accountMicroservices.rest.account.model.response.AccountDetailResponse;
 import com.companyName.coreMicroservices.repository.entity.Invoice;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
             fileDto.setSurname(dto.getSurname());
             fileDto.setEmail(dto.getEmail());
             fileDto.setFkUser(dto.getFkUser());
-            fileDto.setBalance(dto.getBalance().setScale(2,BigDecimal.ROUND_HALF_DOWN));
+            fileDto.setBalance(dto.getBalance() != null ? dto.getBalance().setScale(2,BigDecimal.ROUND_HALF_DOWN): null);
             fileDto.setInvoices(dto.getInvoices());
             formattedDTOs.add(fileDto);
         }
@@ -81,7 +82,7 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
     }
 
     public void addInvoiceToAccount(Long accountId, Invoice invoice){
-        Optional<Account> account = repository.findById(accountId.toString());
+        Optional<Account> account = repository.findById(accountId);
         if (account.isEmpty()) {
             throw new IllegalArgumentException("Invoice not found " + accountId);
         }
@@ -90,15 +91,22 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
     }
 
     @Override
+    @Transactional
     public List<AccountDetailResponse> updateAccountDetail(Account newAccount) {
         log.debug("Into updateAccountDetail");
 
-        Optional<Account> currentAccount = repository.findById(newAccount.getId().toString());
-        currentAccount.get().updateAccount(newAccount);
-        repository.save(currentAccount.get());
-
-        List<Account> dbResult = repository.findByFkUser(newAccount.getFkUser());
-        List<AccountDetailResponse> response = dbResultToDto(dbResult);
+        Optional<Account> currentAccount = repository.findById(newAccount.getId());
+        currentAccount.ifPresent(account -> {
+            account.setName(newAccount.getName() != null ? newAccount.getName() : currentAccount.get().getName());
+            account.setSurname(newAccount.getSurname() != null ? newAccount.getSurname() : currentAccount.get().getSurname());
+            account.setEmail(newAccount.getEmail() != null ? newAccount.getEmail() : currentAccount.get().getEmail());
+            account.setFkUser(newAccount.getFkUser() != null ? newAccount.getFkUser() : currentAccount.get().getFkUser());
+            account.setBalance(newAccount.getBalance() != null ? newAccount.getBalance() : currentAccount.get().getBalance());
+        });
+        //il transactional fa la save
+        //repository.save(currentAccount.get());
+        Optional<Account> dbResult = repository.findById(newAccount.getId());
+        List<AccountDetailResponse> response = dbResultToDto(dbResult.stream().toList());
 
         return response;
     }
@@ -120,7 +128,7 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
 
         try {
             for(Account accToDelete:dbResult){
-                repository.deleteById(accToDelete.getId().toString());
+                repository.deleteById(accToDelete.getId());
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
