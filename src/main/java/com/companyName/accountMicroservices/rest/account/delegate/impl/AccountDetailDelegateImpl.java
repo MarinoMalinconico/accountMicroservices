@@ -103,8 +103,7 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
             account.setFkUser(newAccount.getFkUser() != null ? newAccount.getFkUser() : currentAccount.get().getFkUser());
             account.setBalance(newAccount.getBalance() != null ? newAccount.getBalance() : currentAccount.get().getBalance());
         });
-        //il transactional fa la save
-        //repository.save(currentAccount.get());
+
         Optional<Account> dbResult = repository.findById(newAccount.getId());
         List<AccountDetailResponse> response = dbResultToDto(dbResult.stream().toList());
 
