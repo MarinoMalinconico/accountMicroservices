@@ -35,7 +35,7 @@ public class AccountDetailController {
         List<AccountDetailResponse> delegateResult =  null;
         BasicResponse<List<AccountDetailResponse>> response = new BasicResponse<>();
         try {
-            delegateResult= delegate.getAccountDetail(account.getCf());
+            delegateResult= delegate.getAccountDetailQuery(account.getCf());
             if (!delegateResult.isEmpty() && delegateResult!=null){
                 response.setData(delegateResult);
                 //response.setTimestamp(fmt.format(new Date()));
@@ -59,12 +59,45 @@ public class AccountDetailController {
     }
 
     //con path parameter
-    @RequestMapping(value = "/accountDetailBasicResponseParam",
+    @RequestMapping(value = "/accountDetailBasicResponseByCfQuery",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponseByCfQuery(@RequestParam String FkUser) throws InvalidParameterException {
 
         log.info("Entering in accountDetail service(param) - PathVariable: [{}]", FkUser);
+
+        List<AccountDetailResponse> delegateResult =  null;
+        BasicResponse<List<AccountDetailResponse>> response = new BasicResponse<>();
+        try {
+            delegateResult= delegate.getAccountDetailQuery(FkUser);
+            if (!delegateResult.isEmpty() && delegateResult!=null){
+                response.setData(delegateResult);
+                //response.setTimestamp(fmt.format(new Date()));
+            } else {
+                //metti log "nessun dato trovato"
+            }
+            log.debug("result delegate.getAccountDetail(account) [{}]", response);
+        } catch (InvalidParameterException  e){
+            log.error("ERROR {} ", e.getMessage(), e);
+            throw e;
+        } catch (Exception e) {
+            log.error("ERROR {} ", e.getMessage(), e);
+
+        }
+
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(response);
+    }
+
+    //get con read e jpa
+    @RequestMapping(value = "/accountDetailBasicResponseByCf",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponseByCf(@RequestParam String FkUser) throws InvalidParameterException {
+
+        log.info("Entering in accountDetail service(param)(JPA) - PathVariable: [{}]", FkUser);
 
         List<AccountDetailResponse> delegateResult =  null;
         BasicResponse<List<AccountDetailResponse>> response = new BasicResponse<>();
@@ -91,41 +124,8 @@ public class AccountDetailController {
                 .body(response);
     }
 
-    //get con read e jpa
-    @RequestMapping(value = "/accountDetailBasicResponseParam",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponseByCf(@RequestParam String FkUser) throws InvalidParameterException {
-
-        log.info("Entering in accountDetail service(param)(JPA) - PathVariable: [{}]", FkUser);
-
-        List<AccountDetailResponse> delegateResult =  null;
-        BasicResponse<List<AccountDetailResponse>> response = new BasicResponse<>();
-        try {
-            delegateResult= delegate.getAccountDetailJPA(FkUser);
-            if (!delegateResult.isEmpty() && delegateResult!=null){
-                response.setData(delegateResult);
-                //response.setTimestamp(fmt.format(new Date()));
-            } else {
-                //metti log "nessun dato trovato"
-            }
-            log.debug("result delegate.getAccountDetail(account) [{}]", response);
-        } catch (InvalidParameterException  e){
-            log.error("ERROR {} ", e.getMessage(), e);
-            throw e;
-        } catch (Exception e) {
-            log.error("ERROR {} ", e.getMessage(), e);
-
-        }
-
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(response);
-    }
-
     //get all jpa
-    @RequestMapping(value = "/accountDetailBasicResponseParamAll",
+    @RequestMapping(value = "/accountDetailBasicResponseGetAll",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> accountDetailBasicResponseGetAll() throws InvalidParameterException {
@@ -135,7 +135,7 @@ public class AccountDetailController {
         List<AccountDetailResponse> delegateResult =  null;
         BasicResponse<List<AccountDetailResponse>> response = new BasicResponse<>();
         try {
-            delegateResult= delegate.getAllJPA();
+            delegateResult= delegate.getAllAccountList();
             if (!delegateResult.isEmpty() && delegateResult!=null){
                 response.setData(delegateResult);
                 //response.setTimestamp(fmt.format(new Date()));
@@ -157,7 +157,7 @@ public class AccountDetailController {
                 .body(response);
     }
 
-    @RequestMapping(value = "/AddAccount",
+    @RequestMapping(value = "/addAccount",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> addAccount(@RequestBody AddAccountDetailRequest account) throws InvalidParameterException {
@@ -189,10 +189,10 @@ public class AccountDetailController {
                 .body(response);
     }
 
-    @RequestMapping(value = "/AddInvoice",
+    @RequestMapping(value = "/addInvoice",
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> AddInvoice(@RequestBody Invoice invoice, @RequestParam Long accountId) throws InvalidParameterException {
+    public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> addInvoice(@RequestBody Invoice invoice, @RequestParam Long accountId) throws InvalidParameterException {
 
         log.info("Entering in AddInvoice [{}]",accountId);
 
@@ -214,7 +214,7 @@ public class AccountDetailController {
                 .body(response);
     }
 
-    @RequestMapping(value = "/UpdateAccount",
+    @RequestMapping(value = "/updateAccountDetail",
     method = RequestMethod.PUT,
     produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> updateAccountDetail(@RequestBody Account account) throws InvalidParameterException {
@@ -245,7 +245,7 @@ public class AccountDetailController {
                 .body(response);
     }
 
-    @RequestMapping(value = "/DeleteAccount",
+    @RequestMapping(value = "/deleteAccount",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> deleteAccount(@RequestBody Account account) throws InvalidParameterException {
@@ -257,7 +257,7 @@ public class AccountDetailController {
         List<AccountDetailResponse> delegateResult = null;
         BasicResponse<List<AccountDetailResponse>> response = new BasicResponse<>();
         try {
-            delegateResult= delegate.getAccountDetailJPA(account.getFkUser());
+            delegateResult= delegate.getAccountDetail(account.getFkUser());
             deleted=delegate.deleteAccountDetail(account);
             if (!delegateResult.isEmpty() && delegateResult != null) {
                 response.setData(delegateResult);
@@ -280,7 +280,7 @@ public class AccountDetailController {
                 .body(response);
     }
 
-    @RequestMapping(value = "/DeleteAccountByCf",
+    @RequestMapping(value = "/deleteAccountByCf",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<BasicResponse<List<AccountDetailResponse>>> deleteAccountByCf(@RequestBody Account account) throws InvalidParameterException {
@@ -292,7 +292,7 @@ public class AccountDetailController {
         List<AccountDetailResponse> delegateResult = null;
         BasicResponse<List<AccountDetailResponse>> response = new BasicResponse<>();
         try {
-            delegateResult= delegate.getAccountDetailJPA(account.getFkUser());
+            delegateResult= delegate.getAccountDetail(account.getFkUser());
             deleted=delegate.deleteAccountDetailByCf(account);
             if (!delegateResult.isEmpty() && delegateResult != null) {
                 response.setData(delegateResult);

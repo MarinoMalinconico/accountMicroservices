@@ -25,9 +25,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}AddAccount",
+							"raw": "{{baseURL}}addAccount",
 							"host": [
-								"{{baseURL}}AddAccount"
+								"{{baseURL}}addAccount"
 							]
 						},
 						"description": "esempio di uso, ricorda di avere inovice a null\n\n```\n{\n    \"name\":\"pier\",\n    \"surname\":\"paolo\",\n    \"email\":\"pierpaolo@altrove.it\",\n    \"fkUser\": \"CCGVNLSN87H13D761R\",\n    \"balance\": 3000.03,\n    \"invoices\": null\n}\n\n ```"
@@ -72,9 +72,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}accountDetailBasicResponseParam?FkUser=RGNLSN87H13D761R",
+							"raw": "{{baseURL}}accountDetailBasicResponseByCfQuery?FkUser=RGNLSN87H13D761R",
 							"host": [
-								"{{baseURL}}accountDetailBasicResponseParam"
+								"{{baseURL}}accountDetailBasicResponseByCfQuery"
 							],
 							"query": [
 								{
@@ -101,9 +101,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}UpdateAccount",
+							"raw": "{{baseURL}}updateAccountDetail",
 							"host": [
-								"{{baseURL}}UpdateAccount"
+								"{{baseURL}}updateAccountDetail"
 							]
 						},
 						"description": "esempio di uso, mettere id dell'elemento che si vuole modificare (obbligatorio), e inserire i campi da modificare, con i nuovi valori, ricorda di avere inovice a null\n\n```\n{\n    \"id\":16,\n    \"name\":\"pier\",\n    \"surname\":\"paola\"\n}\n\n ```\n\nstruttura con tutti gli attributi\n\n```\n{\n    \"id\":16,\n    \"name\":\"pier\",\n    \"surname\":\"paolo\",\n    \"email\":\"pierpaolo@altrove.it\",\n    \"fkUser\": \"CCGVNLSN87H13D762R\",\n    \"balance\": 3000.03\n}\n\n ```"
@@ -125,9 +125,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}AddInvoice?accountId=18",
+							"raw": "{{baseURL}}addInvoice?accountId=18",
 							"host": [
-								"{{baseURL}}AddInvoice"
+								"{{baseURL}}addInvoice"
 							],
 							"query": [
 								{
@@ -155,9 +155,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}DeleteAccount",
+							"raw": "{{baseURL}}deleteAccount",
 							"host": [
-								"{{baseURL}}DeleteAccount"
+								"{{baseURL}}deleteAccount"
 							]
 						},
 						"description": "inserisci l'id dell'elemento che si vuole cancellare\n\nesempio\n\n```\n{\n    \"id\": \"2\"\n}\n\n ```"
@@ -179,9 +179,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}DeleteAccountByCf",
+							"raw": "{{baseURL}}deleteAccountByCf",
 							"host": [
-								"{{baseURL}}DeleteAccountByCf"
+								"{{baseURL}}deleteAccountByCf"
 							]
 						},
 						"description": "esempio di uso:\n\n```\n{\n    \"fkUser\": \"CCGVNLSN87H13D761R\"\n}\n\n ```\n\nviene preso solo il cf lato backend, quindi non ha senso inserire altri dati.\n\ncon questo vengono estratti tutti gli id associati e vengono fatte le varie deleteById per ognuno, questo genera una delete anche sugli elementi collegati"
@@ -189,7 +189,7 @@
 					"response": []
 				},
 				{
-					"name": "READ JPA accountDetailBasicResponse parameter",
+					"name": "READ accountDetailBasicResponse parameter",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -206,9 +206,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}accountDetailBasicResponseParam?FkUser=CCGVNLSN87H13D762R",
+							"raw": "{{baseURL}}accountDetailBasicResponseByCf?FkUser=CCGVNLSN87H13D762R",
 							"host": [
-								"{{baseURL}}accountDetailBasicResponseParam"
+								"{{baseURL}}accountDetailBasicResponseByCf"
 							],
 							"query": [
 								{
@@ -221,7 +221,7 @@
 					"response": []
 				},
 				{
-					"name": "READ All JPA accountDetailBasicResponse parameter",
+					"name": "READ All accountDetailBasicResponse parameter",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -238,9 +238,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}accountDetailBasicResponseParamAll",
+							"raw": "{{baseURL}}accountDetailBasicResponseGetAll",
 							"host": [
-								"{{baseURL}}accountDetailBasicResponseParamAll"
+								"{{baseURL}}accountDetailBasicResponseGetAll"
 							]
 						}
 					},

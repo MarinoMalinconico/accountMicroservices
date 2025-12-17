@@ -24,7 +24,7 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
     AccountRepository repository;
 
     @Override
-    public List<AccountDetailResponse> getAccountDetail(String FkUser) {
+    public List<AccountDetailResponse> getAccountDetailQuery(String FkUser) {
         log.debug("Into getAccountDetail delegate with PathParameter [{}]", FkUser);
 
         List<Account> dbResult = repository.getAllAccountPerUser(FkUser);
@@ -50,7 +50,7 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
     }
 
     @Override
-    public List<AccountDetailResponse> getAccountDetailJPA(String FkUser) {
+    public List<AccountDetailResponse> getAccountDetail(String FkUser) {
         log.debug("Into getAccountDetail delegate with PathParameter [{}]", FkUser);
 
         List<Account> dbResult = repository.findByFkUser(FkUser);
@@ -60,7 +60,7 @@ public class AccountDetailDelegateImpl implements AccountDetailDelegate {
     }
 
     @Override
-    public List<AccountDetailResponse> getAllJPA() {
+    public List<AccountDetailResponse> getAllAccountList() {
         log.debug("Into getAccountDetail delegate with all");
 
         List<Account> dbResult = repository.findAll();
